@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="referrer" content="never">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>learning angular.js(1) | Danni&#39;s Blog</title>
+  <meta name="description" content="最近在学angular.js，按照这个教程：通俗易懂的教程 3月3日part1 简介 ng-app 即angular.js application,将会被angular管理 &amp;#123;&amp;#123; &amp;#125;&amp;#125; 数据绑定的表达式。里面可以是各种东西等等，这些都会被计算出来。比如： &amp;#123;&amp;#123;10 + 1&amp;#125;&amp;#125; &amp;#123;&amp;#123; 1 == 2&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learning angular.js(1)">
+<meta property="og:url" content="https://chendanni.github.io/2018/03/03/learning-angularjs/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="最近在学angular.js，按照这个教程：通俗易懂的教程 3月3日part1 简介 ng-app 即angular.js application,将会被angular管理 &amp;#123;&amp;#123; &amp;#125;&amp;#125; 数据绑定的表达式。里面可以是各种东西等等，这些都会被计算出来。比如： &amp;#123;&amp;#123;10 + 1&amp;#125;&amp;#125; &amp;#123;&amp;#123; 1 == 2&amp;#">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-06T12:59:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="learning angular.js(1)">
+<meta name="twitter:description" content="最近在学angular.js，按照这个教程：通俗易懂的教程 3月3日part1 简介 ng-app 即angular.js application,将会被angular管理 &amp;#123;&amp;#123; &amp;#125;&amp;#125; 数据绑定的表达式。里面可以是各种东西等等，这些都会被计算出来。比如： &amp;#123;&amp;#123;10 + 1&amp;#125;&amp;#125; &amp;#123;&amp;#123; 1 == 2&amp;#">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://chendanni.github.io/2018/03/03/learning-angularjs/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ChenDanni" target="_blank">
+          <!-- <img class="img-circle img-rotate" src="/images/logo.png" width="200" height="200"> -->
+          <img class="img-circle" src="/images/logo.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chen Danni</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Nothing last forever.</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> China</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-learning-angularjs" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      learning angular.js(1)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/03/03/learning-angularjs/" class="article-date">
+	  <time datetime="2018-03-03T21:58:36.000Z" itemprop="datePublished">2018-03-03</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/03/03/learning-angularjs/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>最近在学angular.js，按照这个教程：<a href="https://www.youtube.com/watch?v=zKkUN-mJtPQ&amp;list=PL6n9fhu94yhWKHkcL7RJmmXyxkuFB3KSl" target="_blank" rel="noopener">通俗易懂的教程</a></p>
+<h4 id="3月3日"><a href="#3月3日" class="headerlink" title="3月3日"></a>3月3日</h4><h5 id="part1-简介"><a href="#part1-简介" class="headerlink" title="part1 简介"></a>part1 简介</h5><ul>
+<li>ng-app 即angular.js application,将会被angular管理</li>
+<li>&#123;&#123; &#125;&#125; 数据绑定的表达式。里面可以是各种东西等等，这些都会被计算出来。比如：<ul>
+<li>&#123;&#123;10 + 1&#125;&#125;</li>
+<li>&#123;&#123; 1 == 2&#125;&#125;</li>
+<li>对象：&#123;&#123; {name: ‘David’, age: ‘20’}.name &#125;&#125;</li>
+<li>数组：&#123;&#123; [‘David’, ‘Pam’][0] &#125;&#125;</li>
+</ul>
+</li>
+</ul>
+<h5 id="part2-module和controller"><a href="#part2-module和controller" class="headerlink" title="part2 module和controller"></a>part2 module和controller</h5><ul>
+<li>module: 相当于main方法一样的存在，确定ng-app如何被启动，创建方法为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myApp = angular.module(&quot;myApp&quot;,[]);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此处有两个参数，第一个参数：app name，第二个参数，这个module依赖的其他module</p>
+<ul>
+<li>controller: 和mvc里的controller一样，创建方法为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var myController = function($scope)&#123;</span><br><span class="line">  $scope.message = &quot;hello&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此处$scope会被自动传进来。它的作用是把数据附加在上面，然后在view（html）里面就可以用这些数据了，当然它也可以附加对象等等。</p>
+<ul>
+<li><p>controller如何注册module：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myApp.controller(&quot;myController&quot;,myController);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何使用module驱动ng-app，比如在html里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-app = &quot;myApp&quot;&gt;</span><br><span class="line">  &lt;div ng-controller = &quot;myController&quot;&gt;</span><br><span class="line">    &amp;#123;&amp;#123; message &amp;#125;&amp;#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="part3-注意点controllers"><a href="#part3-注意点controllers" class="headerlink" title="part3 注意点controllers"></a>part3 注意点controllers</h5><p>一些tips：</p>
+<ol>
+<li>html里ng-controller的名字不要拼错（会报错的）</li>
+<li>html里属性名拼错是不回报错的，只会不显示内容，比如&#123;&#123; message &#125;&#125;写成了&#123;&#123; messag &#125;&#125;</li>
+<li>part2所有过程可以写成一行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var myApp = angular</span><br><span class="line">    .module(&quot;myApp&quot;,[])</span><br><span class="line">    .controller(&quot;myController&quot;,function($scope)&#123;</span><br><span class="line">          $scope.message = &quot;hello&quot;;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="part4-ng-src"><a href="#part4-ng-src" class="headerlink" title="part4 ng-src"></a>part4 ng-src</h5><p>使用ng-src可以保证&#123;&#123;…&#125;&#125;在被求值后再向服务器发送请求，以避免404和不必要的多次请求。</p>
+<p>例如：将图片地址动态绑定，如果这样写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src = &amp;#123;&amp;#123; image.path &amp;#125;&amp;#125;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>会造成404报错，但图片可以显示出来。原因是当dom被解析后就会向服务器发送请求以获得有效地址，此时&#123;&#123;..&#125;&#125;的值还没有被计算出来，所以这并不是一个有效地址，所以会导致404。在&#123;&#123;…&#125;&#125;的值被计算出来后，会再次向服务器发送请求，此时已变成有效地址故图片能显示出来。</p>
+<p>使用ng-src可以解决这个问题。写法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img ng-src = &amp;#123;&amp;#123;image.path&amp;#125;&amp;#125;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>此时在可以保证&#123;&#123;…&#125;&#125;在被求值后再向服务器发送请求，解决上述2问题。</p>
+<h4 id="3月4日"><a href="#3月4日" class="headerlink" title="3月4日"></a>3月4日</h4><h5 id="part5-数据绑定的两种方式"><a href="#part5-数据绑定的两种方式" class="headerlink" title="part5 数据绑定的两种方式"></a>part5 数据绑定的两种方式</h5><p>数据绑定：view和model同时更新。</p>
+<ol>
+<li>改变model改变view：&#123;&#123;para&#125;&#125;</li>
+<li>改变view改变model：ng-model = “para”</li>
+</ol>
+<h5 id="part6-ng-repeat"><a href="#part6-ng-repeat" class="headerlink" title="part6 ng-repeat"></a>part6 ng-repeat</h5><p>例子，js里有个数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var employees = [</span><br><span class="line">  &#123;name:&quot;David&quot;, age:&quot;20&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;Jason&quot;, age:&quot;21&quot;&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>html里有个表格需要显示employee信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr ng-repeat = &quot;e in employees&quot;&gt;</span><br><span class="line">  &lt;td&gt;&amp;#123;&amp;#123;e.name&amp;#125;&amp;#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&amp;#123;&amp;#123;e.age&amp;#125;&amp;#125;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="part7-ng-click-event"><a href="#part7-ng-click-event" class="headerlink" title="part7 ng-click(event)"></a>part7 ng-click(event)</h5><p>例子：点击button触发事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$scope.clickEvent = function()&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type = &quot;button&quot; ng-click = &quot;clickEvent&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="part8-Filter-Format"><a href="#part8-Filter-Format" class="headerlink" title="part8 Filter-Format"></a>part8 Filter-Format</h5><p>格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;experssion | filterName : parameter&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>lowercase</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;user.name | lowercase&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>uppercase</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;user.name | uppercase&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>date</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;user.dateOfBirth | data : &quot;dd/MM/yyyy&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>number(例子中为保留两位小数)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;user.salary | number:2&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>currency</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;user.salary | currency:&quot;$&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>limitTo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.rowLimit = 3;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr ng-repeat = &quot;e in employees | limitTo : rowLimit&quot;&gt;</span><br><span class="line">  &lt;td&gt;&amp;#123;&amp;#123;e.name&amp;#125;&amp;#125;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&amp;#123;&amp;#123;e.age&amp;#125;&amp;#125;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="part9-10-Filter-sorting"><a href="#part9-10-Filter-sorting" class="headerlink" title="part9-10 Filter-sorting"></a>part9-10 Filter-sorting</h5><p>格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;experssion | orderBy : expression: reserve&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure></p>
+<p>eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng-repeat = &quot;e in es | orderBy : &apos;salary&apos; : false&quot;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>升序：<ul>
+<li>false</li>
+<li>+salary</li>
+</ul>
+</li>
+<li>降序：<ul>
+<li>true</li>
+<li>-salary</li>
+</ul>
+</li>
+</ol>
+<h5 id="part11-12-Filter-search"><a href="#part11-12-Filter-search" class="headerlink" title="part11-12 Filter-search"></a>part11-12 Filter-search</h5><p>eg.全局搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type = &quot;test&quot; placeholder = &quot;search&quot;</span><br><span class="line">  ng-model = &quot;searchText&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr ng-repeat = &quot;e in es | filter : searchTest&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></p>
+<p>eg.搜索特定（比如city）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type = &quot;test&quot; placeholder = &quot;search&quot;</span><br><span class="line">  ng-model = &quot;searchText.city&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr ng-repeat = &quot;e in es | filter : searchTest&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></p>
+<p>eg.精确搜索(filter后面加一个参数)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr ng-repeat = &quot;e in es | filter : searchTest:true&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-license">
+      转载请注明出处
+    </li>
+  </ul>
+<!-- </blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ChenDanni" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/logo.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ChenDanni" target="_blank"><span class="text-dark">Chen Danni</span><small class="ml-1x">Nothing last forever.</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+</blockquote>
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTk3MC82NTM1">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/03/06/learning-Angular-js-2/" title="learning Angular.js(2)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/12/31/life/" title="life"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>

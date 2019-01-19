@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="referrer" content="never">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>learning Angular.js(2) | Danni&#39;s Blog</title>
+  <meta name="description" content="3月5日part13 Filter-customeg. 把数字选项转化为文字123456789angular.module(&amp;quot;myApp&amp;quot;,[])  .filter(&amp;quot;filterName&amp;quot;,function()&amp;#123;    return function(num)&amp;#123;      case 1:        return &amp;quot;sele">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learning Angular.js(2)">
+<meta property="og:url" content="https://chendanni.github.io/2018/03/06/learning-Angular-js-2/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="3月5日part13 Filter-customeg. 把数字选项转化为文字123456789angular.module(&amp;quot;myApp&amp;quot;,[])  .filter(&amp;quot;filterName&amp;quot;,function()&amp;#123;    return function(num)&amp;#123;      case 1:        return &amp;quot;sele">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-06T16:05:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="learning Angular.js(2)">
+<meta name="twitter:description" content="3月5日part13 Filter-customeg. 把数字选项转化为文字123456789angular.module(&amp;quot;myApp&amp;quot;,[])  .filter(&amp;quot;filterName&amp;quot;,function()&amp;#123;    return function(num)&amp;#123;      case 1:        return &amp;quot;sele">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://chendanni.github.io/2018/03/06/learning-Angular-js-2/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ChenDanni" target="_blank">
+          <!-- <img class="img-circle img-rotate" src="/images/logo.png" width="200" height="200"> -->
+          <img class="img-circle" src="/images/logo.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chen Danni</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Nothing last forever.</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> China</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-learning-Angular-js-2" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      learning Angular.js(2)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/03/06/learning-Angular-js-2/" class="article-date">
+	  <time datetime="2018-03-07T02:37:01.000Z" itemprop="datePublished">2018-03-06</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/03/06/learning-Angular-js-2/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h4 id="3月5日"><a href="#3月5日" class="headerlink" title="3月5日"></a>3月5日</h4><h5 id="part13-Filter-custom"><a href="#part13-Filter-custom" class="headerlink" title="part13 Filter-custom"></a>part13 Filter-custom</h5><p>eg. 把数字选项转化为文字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&quot;myApp&quot;,[])</span><br><span class="line">  .filter(&quot;filterName&quot;,function()&#123;</span><br><span class="line">    return function(num)&#123;</span><br><span class="line">      case 1:</span><br><span class="line">        return &quot;select one&quot;;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .controller(...)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;...| filterName&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>#####part14 ng-hide &amp;ng-show<br>eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type = &quot;checkBox&quot; ng-model = &quot;hideA&quot;/&gt;</span><br><span class="line">...</span><br><span class="line">&lt;th ng-hide = &quot;hideA&quot;&gt;A&lt;/th&gt;</span><br><span class="line">&lt;th ng-show = &quot;!hideA&quot;&gt;A&lt;/th&gt;</span><br></pre></td></tr></table></figure></p>
+<p>#####part15 ng-init<br>在html中可以初始化model，eg.嵌套的index</p>
+<p>#####part16 ng-include</p>
+<ol>
+<li><p>引用页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-include = &quot;xxx.html&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用model</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-include=&quot;employeeList&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="part18-http"><a href="#part18-http" class="headerlink" title="part18 $http"></a>part18 $http</h5><p>向服务器发请求，eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$http.(&#123;</span><br><span class="line">    method:&quot;get/...&quot;,</span><br><span class="line">    url:&quot;...&quot;</span><br><span class="line">  &#125;).then(function(response,reason)&#123;</span><br><span class="line">      ...</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>返回的是Promise,then中response为返回值，reason为出错状况和原因</p>
+<h5 id="part19-service"><a href="#part19-service" class="headerlink" title="part19 service"></a>part19 service</h5><p>可以提供某种服务的东西，比如$http,$log等<br>为什么使用：复用、依赖注入、易测试</p>
+<h5 id="part20-custom-service"><a href="#part20-custom-service" class="headerlink" title="part20 custom-service"></a>part20 custom-service</h5><p>很多地方都要用到的方法可以封装一下，eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.factory(&apos;stringService&apos;,funcion()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      processString : function(input)&#123;</span><br><span class="line">        ...</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$stringService.processString(&quot;ssss&quot;);</span><br></pre></td></tr></table></figure></p>
+<h5 id="part21-22-anchorscroll"><a href="#part21-22-anchorscroll" class="headerlink" title="part21-22 anchorscroll"></a>part21-22 anchorscroll</h5><p>跳转到屏幕某部分,eg. return to top/buttom<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.controller(&quot;demoController&quot;,function($scope,$location,$anchorscroll)&#123;</span><br><span class="line">    $scope.scrollTo = function(direction)&#123;</span><br><span class="line">      $location.hash(direction); //1</span><br><span class="line">      $anchorscroll(); //2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>$location.hash(..): 在url末尾加上direction内容</li>
+<li>$anchorscroll(): 读取hash值跳转到那个位置（根据id）</li>
+</ol>
+<p>html中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id = &quot;top&quot; ng-click = &quot;scrollTo(&apos;buttom&apos;)&quot;&gt;TOP&lt;/button&gt;</span><br><span class="line">...</span><br><span class="line">&lt;button id = &quot;buttom&quot; ng-click = &quot;scrollTo(&apos;top&apos;)&quot;&gt;BUTTOM&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="part23-26-rounting-amp-template-layout"><a href="#part23-26-rounting-amp-template-layout" class="headerlink" title="part23-26 rounting &amp; template layout"></a>part23-26 rounting &amp; template layout</h5><p>eg.左边导航栏，点击导航栏不跳出页面切换右边内容</p>
+<ol>
+<li>负责路由的angular-route.min.js需要另外下载</li>
+<li>使用ng-view</li>
+<li>用$routeProvider来配置路由</li>
+</ol>
+<p>例子：主页为index.html,自页面为course.html等</p>
+<ol>
+<li><p>js部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var app = angular.module(&quot;demoApp&quot;,[&quot;ngRoute&quot;])</span><br><span class="line">  .config(function($routeProvider)&#123;</span><br><span class="line">    $routeProvider</span><br><span class="line">    .when(&quot;/course&quot;,&#123;</span><br><span class="line">        templateUrl: &quot;xxx/course.html&quot;,</span><br><span class="line">        controller: &quot;courseController&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    .when(&quot;/xxx&quot;,&#123;</span><br><span class="line">        templateUrl: &quot;xxx/xxx.html&quot;,</span><br><span class="line">        controller: &quot;xxxController&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    .controller(&quot;courseController&quot;,function(...)&#123;...&#125;)</span><br><span class="line">    .controller(&quot;xxxController&quot;,function(...)&#123;...&#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href = &quot;#/course&quot;&gt;course&lt;/a&gt;</span><br><span class="line">&lt;a href = &quot;#/xxx&quot;&gt;xxx&lt;/a&gt;</span><br><span class="line">...</span><br><span class="line">&lt;ng-view&gt;&lt;/ng-view&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="3月6日"><a href="#3月6日" class="headerlink" title="3月6日"></a>3月6日</h4><h5 id="part28-默认路径"><a href="#part28-默认路径" class="headerlink" title="part28 默认路径"></a>part28 默认路径</h5><p>比如输入随意的路径都显示默认页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$routeProvider.otherwise(&#123;</span><br><span class="line">    redirectTo: &quot;/xxx&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h5 id="part30-从url上读参数"><a href="#part30-从url上读参数" class="headerlink" title="part30 从url上读参数"></a>part30 从url上读参数</h5><p>eg.传学生id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href = &quot;students/&#123;&#123;stu.id&#125;&#125;&quot;&gt;&#123;&#123;stu.name&#125;&#125;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<p>js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.when(&quot;students/:id&quot;,&#123;</span><br><span class="line">    templateUrl : &quot;xxx/detail.html&quot;,</span><br><span class="line">    controller : &quot;detailController&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>http请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.controller(&quot;stuController&quot;,function($scope, $http, $routeParam)&#123;</span><br><span class="line">  $http(&#123;</span><br><span class="line">    url : &quot;...&quot;,</span><br><span class="line">    params: &#123;id: $routeParams.id&#125;,</span><br><span class="line">    method : &quot;get&quot;</span><br><span class="line">  &#125;).then(function(response)&#123;</span><br><span class="line">    $scope.stu = response.data;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="part32-34-ControllerAS"><a href="#part32-34-ControllerAS" class="headerlink" title="part32-34 ControllerAS"></a>part32-34 ControllerAS</h5><ol>
+<li>使用方法，controller里可以不用传$scope，直接用this<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ng-controller = &quot;homeController as hc&quot;</span><br><span class="line">...</span><br><span class="line">&#123;&#123;hc.name&#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.when(&quot;...&quot;, &#123;</span><br><span class="line">  ...</span><br><span class="line">  controllerAs: &quot;hc&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>嵌套controller时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-controller = &quot;hhhhController as hc&quot;&gt;</span><br><span class="line">  &#123;&#123;hc.name&#125;&#125;</span><br><span class="line">  &lt;div ng-controller = &quot;aaaaController as ac&quot;&gt;</span><br><span class="line">    &#123;&#123;ac.name&#125;&#125; - &#123;&#123;hc.name&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>controllerAS和$scope的区别：使用$scope需要注入到controller，AS不要</p>
+</li>
+</ol>
+<h5 id="part35-caseInsensitiveMatch-amp-inline-template"><a href="#part35-caseInsensitiveMatch-amp-inline-template" class="headerlink" title="part35 caseInsensitiveMatch &amp; inline template"></a>part35 caseInsensitiveMatch &amp; inline template</h5><ol>
+<li><p>caseInsensitiveMatch: url可以不区分大小写</p>
+<ul>
+<li><p>单个链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.when(&quot;/xxx&quot;,&#123;</span><br><span class="line">    caseInsensitiveMatch : true;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$routeProvider.caseInsensitiveMatch = true;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>inline template<br>templateUrl引用外部页面，换成template可以是inline的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template: &quot;&lt;h1&gt;...&lt;/h1&gt;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="part36-reload"><a href="#part36-reload" class="headerlink" title="part36 reload"></a>part36 reload</h5><p>只刷新部分数据，不重新加载整个ng-app。controller参数加上$route<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$scope.reloadData = function()&#123;</span><br><span class="line">  $route.reload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="part37-scope-amp-rootscope"><a href="#part37-scope-amp-rootscope" class="headerlink" title="part37 $scope &amp; $rootscope"></a>part37 $scope &amp; $rootscope</h5><ol>
+<li>$scope：只针对当前controller</li>
+<li>$rootscope：是global的，所有controller可用</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-license">
+      转载请注明出处
+    </li>
+  </ul>
+<!-- </blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ChenDanni" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/logo.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ChenDanni" target="_blank"><span class="text-dark">Chen Danni</span><small class="ml-1x">Nothing last forever.</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+</blockquote>
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTk3MC82NTM1">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/03/07/learnning-angular-js-3/" title="learnning angular.js(3)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/03/03/learning-angularjs/" title="learning angular.js(1)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>

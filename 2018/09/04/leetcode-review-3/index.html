@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="referrer" content="never">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>leetcode review (3) | Danni&#39;s Blog</title>
+  <meta name="description" content="easy1 Two Sumhashmap   medium2 Add Two Numbers O(n)从头到尾遍历，短的计算结束后计算长的，如果进位为零直接加上剩余linkedList   3 Longest Substring Without Repeating Characters O(n)    用个数组记一下数， two pointer遍历一遍，遇到相同字符算一下最大长度，最后注意一下最后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode review (3)">
+<meta property="og:url" content="https://chendanni.github.io/2018/09/04/leetcode-review-3/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="easy1 Two Sumhashmap   medium2 Add Two Numbers O(n)从头到尾遍历，短的计算结束后计算长的，如果进位为零直接加上剩余linkedList   3 Longest Substring Without Repeating Characters O(n)    用个数组记一下数， two pointer遍历一遍，遇到相同字符算一下最大长度，最后注意一下最后">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-11T15:43:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcode review (3)">
+<meta name="twitter:description" content="easy1 Two Sumhashmap   medium2 Add Two Numbers O(n)从头到尾遍历，短的计算结束后计算长的，如果进位为零直接加上剩余linkedList   3 Longest Substring Without Repeating Characters O(n)    用个数组记一下数， two pointer遍历一遍，遇到相同字符算一下最大长度，最后注意一下最后">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://chendanni.github.io/2018/09/04/leetcode-review-3/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ChenDanni" target="_blank">
+          <!-- <img class="img-circle img-rotate" src="/images/logo.png" width="200" height="200"> -->
+          <img class="img-circle" src="/images/logo.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Chen Danni</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Nothing last forever.</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> China</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-leetcode-review-3" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      leetcode review (3)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/09/04/leetcode-review-3/" class="article-date">
+	  <time datetime="2018-09-05T00:47:50.000Z" itemprop="datePublished">2018-09-04</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/09/04/leetcode-review-3/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p><strong>easy</strong><br>1 <a href="https://leetcode.com/problems/two-sum/description/" target="_blank" rel="noopener">Two Sum</a><br>hashmap  </p>
+<p><strong>medium</strong><br>2 <a href="https://leetcode.com/problems/add-two-numbers/description/" target="_blank" rel="noopener">Add Two Numbers</a> O(n)<br>从头到尾遍历，短的计算结束后计算长的，如果进位为零直接加上剩余linkedList  </p>
+<p>3 <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/description/" target="_blank" rel="noopener">Longest Substring Without Repeating Characters</a> O(n)  </p>
+<ol>
+<li>用个数组记一下数， two pointer遍历一遍，遇到相同字符算一下最大长度，最后注意一下最后一段全都不一样的情况  </li>
+<li>数组记录idx，一个整数prev记录上一个合理的开始位置，遇到不合理的计算一下最大长度，如果使prev后移，更新prev  </li>
+</ol>
+<p>11 <a href="https://leetcode.com/problems/container-with-most-water/description/" target="_blank" rel="noopener">Container With Most Water</a> O(n)<br>two pointers, 往中间移动，一边算max  </p>
+<p>5 <a href="https://leetcode.com/problems/longest-palindromic-substring/description/" target="_blank" rel="noopener">Longest Palindromic Substring</a> O(n^2)<br>遍历一遍，每个字符都计算以其为中心的奇数、偶数长度的回文字符串，更新结果，注意空字符串  </p>
+<p>138 <a href="https://leetcode.com/problems/copy-list-with-random-pointer/description/" target="_blank" rel="noopener">Copy List with Random Pointer</a>  </p>
+<ol>
+<li>hashMap一一对应存一下 O(n), O(n)</li>
+<li>遍历三遍，第一遍复制所有并传在linkedList里，第二遍为新node指定random，第三遍把新node从linkedList里提取出来，注意指针操作 O(n), O(1)  </li>
+</ol>
+<p>238 <a href="https://leetcode.com/problems/product-of-array-except-self/description/" target="_blank" rel="noopener">Product of Array Except Self</a> O(n)<br>遍历两遍，第一遍算左边的积，第二遍算右边的积顺便乘左边算结果  </p>
+<p>17 <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/" target="_blank" rel="noopener">Letter Combinations of a Phone Number</a> O(n^x)<br>递归写一下  </p>
+<p>681 <a href="https://leetcode.com/problems/next-closest-time/description/" target="_blank" rel="noopener">Next Closest Time</a> O(2^4)<br>dfs得到所有结果判断是否合理，算一下next time  </p>
+<p>49 <a href="https://leetcode.com/problems/group-anagrams/description/" target="_blank" rel="noopener">Group Anagrams</a> O(26<em>n</em>m)<br>遍历每个字符串，统计一下每个字符出现的次数生成一个key，hashMap存一下key，返回list(map.values())  </p>
+<p>33 <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/" target="_blank" rel="noopener">Search in Rotated Sorted Array</a> O(lgn)<br>binary search，注意边界值  </p>
+<p>535 <a href="https://leetcode.com/problems/encode-and-decode-tinyurl/description/" target="_blank" rel="noopener">Encode and Decode TinyURL</a> O(1)<br>id + hashmap</p>
+<p><strong>hard</strong><br>23 <a href="https://leetcode.com/problems/merge-k-sorted-lists/description/" target="_blank" rel="noopener">Merge k Sorted Lists</a> O(nlogm)<br>priorityQueue  </p>
+<p>42 <a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank" rel="noopener">Trapping Rain Water</a> O(n)<br>two pointers(左：l，右：r)<br>小的那个往中间移动并累加结果，遇到比它大的就更新数值重修比较left, right  </p>
+<p>115 <a href="https://leetcode.com/problems/distinct-subsequences/description/" target="_blank" rel="noopener">Distinct Subsequences</a> O(mn)<br>dp:<br>if s[i] == t[j]: dp[i + 1][j + 1] = dp[i][j](新的) + dp[i][j + 1](原来的)<br>else: dp[i + 1][j + 1] = dp[i][j + 1]  </p>
+<p>146 <a href="https://leetcode.com/problems/lru-cache/description/" target="_blank" rel="noopener">LRU Cache</a> O(1)<br>需要：hashmap保存key与节点，双向链表保存cache中的值<br>get: if key in map: return val &amp; move node to list head || else: return -1<br>put: if key in map: update || else: if full: remove tail &amp; add to head || else: add to head</p>
+<p>460 <a href="https://leetcode.com/problems/lfu-cache/description/" target="_blank" rel="noopener">LFU Cache</a> O(1)<br>需要： HashMap1(存储key是否存在)，hashmap2（freq及对应节点），hashmap3（freq结尾）<br>get: 如果key不存在，返回-1，如果存在：freq++，更新，返回对应值  </p>
+<p>update: freq中删除，++freq列表头增加，更新min_freq</p>
+<p>847 <a href="https://leetcode.com/problems/shortest-path-visiting-all-nodes/description/" target="_blank" rel="noopener">Shortest Path Visiting All Nodes</a> O(n*2^k)<br>0 需要：二维数组存储节点及对应状态是否被访问过； int保存当前状态（哪些节点被访问过）；queue保存当前需要继续访问的状态；step表示结果；int表示最终结果<br>1 初始化， 将所有节点加入队列<br>2 BFS，取出此步需要判断的节点，判断是否到达最终状态，如果没有将下一步需要判断的节点和状态放入队列</p>
+<p>864 <a href="https://leetcode.com/problems/shortest-path-to-get-all-keys/description/" target="_blank" rel="noopener">Shortest Path to Get All Keys</a> BFS O(mn(2^k))<br>0 需要：三维数组保存当前状态是否被访问过；int保存当前状态（0-7key，8-15y，16-23x）；queue保存当前需要继续访问的状态<br>1 初始化 （开始状态，！记得修改mark）<br>2 BFS （状态判断，wall，key，lock决定是否继续，if get all keys return steps）  </p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-license">
+      转载请注明出处
+    </li>
+  </ul>
+<!-- </blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ChenDanni" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/logo.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ChenDanni" target="_blank"><span class="text-dark">Chen Danni</span><small class="ml-1x">Nothing last forever.</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+ -->
+</blockquote>
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTk3MC82NTM1">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/10/22/deep-learning-1/" title="deep learning notes(neural network foundation)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/07/29/leetcode-review-2/" title="leetcode review （2）(Data structure) (Java)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
