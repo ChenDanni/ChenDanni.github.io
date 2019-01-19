@@ -5749,12 +5749,12 @@ body.no-sidebar .sidebar {
  */
 
 .profile-block {
-  padding: 20px 15px 10px 15px;
+  padding: 30px 15px 20px 15px;
 }
 
 #avatar {
-  width: 64px;
-  height: 64px;
+  width: 100px;
+  height: 100px;
   display: inline-block;
 }
 
